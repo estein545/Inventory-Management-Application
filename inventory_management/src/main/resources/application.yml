@@ -1,0 +1,14 @@
+
+spring:
+    datasource:
+
+        url: jdbc:postgresql://localhost:5432/Inventory
+        username: postgres
+        password: password
+    output:
+        ansi:
+            enabled: ALWAYS
+    jpa:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
