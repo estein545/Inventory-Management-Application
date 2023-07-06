@@ -19,7 +19,7 @@ public class Warehouse {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     
     @Column(name = "location")
     private String location;
@@ -34,7 +34,7 @@ public class Warehouse {
     public Warehouse() {
     }
 
-    public Warehouse(int id, String location, int maxQuantity, Set<Inventory> toys) {
+    public Warehouse(long id, String location, int maxQuantity, Set<Inventory> toys) {
         this.id = id;
         this.location = location;
         this.maxQuantity = maxQuantity;
@@ -52,11 +52,11 @@ public class Warehouse {
         this.maxQuantity = maxQuantity;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -88,7 +88,7 @@ public class Warehouse {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
+        result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((location == null) ? 0 : location.hashCode());
         result = prime * result + maxQuantity;
         result = prime * result + ((toys == null) ? 0 : toys.hashCode());
