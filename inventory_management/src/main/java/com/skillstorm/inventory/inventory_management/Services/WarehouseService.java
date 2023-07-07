@@ -58,7 +58,7 @@ public class WarehouseService {
             }
         }
 
-        return warehouseRepository.save(warehouse);
+        return null;
     }
 
     public void deleteById(long id) {
