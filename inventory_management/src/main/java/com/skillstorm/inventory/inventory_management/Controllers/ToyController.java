@@ -2,6 +2,8 @@ package com.skillstorm.inventory.inventory_management.Controllers;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.inventory.inventory_management.Models.Toy;
-import com.skillstorm.inventory.inventory_management.Models.Warehouse;
 import com.skillstorm.inventory.inventory_management.Services.ToyService;
 
 @RestController
@@ -34,14 +35,14 @@ public class ToyController {
     }
 
     @GetMapping("/toy")
-    public ResponseEntity<Toy> findWarehouse(@RequestParam(value="id") long id) {
+    public ResponseEntity<Toy> findToy(@RequestParam(value="id") long id) {
         Toy toy = toyService.find(id);
 
         return new ResponseEntity<Toy>(toy, HttpStatus.OK);
     }
 
-    @GetMapping("/toy/{location}")
-    public ResponseEntity<Toy> findWarehouse(@PathVariable String toyName) {
+    @GetMapping("/toy/{toyName}")
+    public ResponseEntity<Toy> findToy(@PathVariable("toyName") String toyName) {
         Toy toy = toyService.find(toyName);
 
         return new ResponseEntity<Toy>(toy, HttpStatus.OK);
@@ -72,6 +73,7 @@ public class ToyController {
     }
 
     @DeleteMapping("/toy")
+    @Transactional
     public int deleteByToyName(@RequestParam(value="toyName") String toyName) {
         toyService.deleteByToyName(toyName);
 

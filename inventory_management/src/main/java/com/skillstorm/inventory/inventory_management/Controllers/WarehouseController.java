@@ -2,6 +2,8 @@ package com.skillstorm.inventory.inventory_management.Controllers;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -72,6 +74,7 @@ public class WarehouseController {
     }
 
     @DeleteMapping("/warehouse")
+    @Transactional
     public int deleteByLocation(@RequestParam(value="location") String location) {
         warehouseService.deleteByLocation(location);
 
