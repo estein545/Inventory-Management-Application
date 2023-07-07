@@ -63,12 +63,6 @@ public class WarehouseController {
 
     }
 
-    @DeleteMapping
-    public int deleteAll() {
-        warehouseService.deleteAll();
-
-        return 1;
-    }
 
     @DeleteMapping("/warehouse/{id}")
     public int deleteById(@PathVariable long id) {
@@ -77,8 +71,8 @@ public class WarehouseController {
         return 1;
     }
 
-    @DeleteMapping("/warehouse/{location}")
-    public int deleteByLocation(@PathVariable String location) {
+    @DeleteMapping("/warehouse")
+    public int deleteByLocation(@RequestParam(value="location") String location) {
         warehouseService.deleteByLocation(location);
 
         return 1;

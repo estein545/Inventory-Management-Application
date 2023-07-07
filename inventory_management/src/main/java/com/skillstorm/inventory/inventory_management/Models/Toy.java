@@ -19,7 +19,7 @@ public class Toy {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name = "toy_name")
     private String toyName;
@@ -31,7 +31,7 @@ public class Toy {
     public Toy() {
     }
 
-    public Toy(int id, String toyName) {
+    public Toy(long id, String toyName) {
         this.id = id;
         this.toyName = toyName;
     }
@@ -40,7 +40,7 @@ public class Toy {
         this.toyName = toyName;
     }
 
-    public Toy(int id, String toyName, Set<Inventory> locations) {
+    public Toy(long id, String toyName, Set<Inventory> locations) {
         this.id = id;
         this.toyName = toyName;
         this.locations = locations;
@@ -51,11 +51,11 @@ public class Toy {
         this.locations = locations;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -79,7 +79,7 @@ public class Toy {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + id;
+        result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((toyName == null) ? 0 : toyName.hashCode());
         result = prime * result + ((locations == null) ? 0 : locations.hashCode());
         return result;

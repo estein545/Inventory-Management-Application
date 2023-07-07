@@ -61,11 +61,6 @@ public class WarehouseService {
         return warehouseRepository.save(warehouse);
     }
 
-    public void deleteAll() {
-        warehouseRepository.deleteAll();
-
-    }
-
     public void deleteById(long id) {
         warehouseRepository.deleteById(id);
 
