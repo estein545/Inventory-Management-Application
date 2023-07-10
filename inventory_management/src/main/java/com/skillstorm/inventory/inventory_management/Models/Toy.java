@@ -12,6 +12,14 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="toys")
 public class Toy {
@@ -28,28 +36,6 @@ public class Toy {
     @OneToMany(targetEntity = Inventory.class, mappedBy = "toy")
     private Set<Inventory> locations;
 
-    public Toy() {
-    }
-
-    public Toy(long id, String toyName) {
-        this.id = id;
-        this.toyName = toyName;
-    }
-
-    public Toy(String toyName) {
-        this.toyName = toyName;
-    }
-
-    public Toy(long id, String toyName, Set<Inventory> locations) {
-        this.id = id;
-        this.toyName = toyName;
-        this.locations = locations;
-    }
-
-    public Toy(String toyName, Set<Inventory> locations) {
-        this.toyName = toyName;
-        this.locations = locations;
-    }
 
     public long getId() {
         return id;
@@ -73,16 +59,6 @@ public class Toy {
 
     public void setLocations(Set<Inventory> locations) {
         this.locations = locations;
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (id ^ (id >>> 32));
-        result = prime * result + ((toyName == null) ? 0 : toyName.hashCode());
-        result = prime * result + ((locations == null) ? 0 : locations.hashCode());
-        return result;
     }
 
     @Override
@@ -110,8 +86,17 @@ public class Toy {
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int) (id ^ (id >>> 32));
+        result = prime * result + ((toyName == null) ? 0 : toyName.hashCode());
+        return result;
+    }
+
+    @Override
     public String toString() {
-        return "Toy [id=" + id + ", toyName=" + toyName + ", locations=" + locations + "]";
+        return "Toy [id=" + id + ", toyName=" + toyName + "]";
     }
 
     

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.inventory.inventory_management.Models.Warehouse;
+import com.skillstorm.inventory.inventory_management.Services.InventoryService;
 import com.skillstorm.inventory.inventory_management.Services.WarehouseService;
 
 @RestController
@@ -27,6 +28,9 @@ public class WarehouseController {
 
     @Autowired
     WarehouseService warehouseService;
+
+    @Autowired
+    InventoryService inventoryService;
 
     @GetMapping
     public ResponseEntity<List<Warehouse>> findAllWarehouses() {
@@ -65,10 +69,12 @@ public class WarehouseController {
 
     }
 
-
+    @Transactional
     @DeleteMapping("/warehouse/{id}")
     public int deleteById(@PathVariable long id) {
+        inventoryService.deleteByWarehouseId(id);
         warehouseService.deleteById(id);
+        
 
         return 1;
     }

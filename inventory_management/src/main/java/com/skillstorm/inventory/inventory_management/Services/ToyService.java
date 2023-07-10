@@ -15,6 +15,9 @@ public class ToyService {
     @Autowired
     ToyRepository toyRepository;
 
+    @Autowired
+    InventoryService inventoryService;
+
     public List<Toy> findAll() {
         return toyRepository.findAll();
     }
@@ -67,6 +70,8 @@ public class ToyService {
     }
 
     public void deleteByToyName(String toyName) {
+        Toy toy = find(toyName);
+        inventoryService.deleteByToyId(toy.getId());
         toyRepository.deleteByToyName(toyName);
 
     }

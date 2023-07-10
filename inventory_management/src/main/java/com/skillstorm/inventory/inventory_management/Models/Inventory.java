@@ -8,7 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Positive;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "inventory")
 public class Inventory {
@@ -26,35 +34,10 @@ public class Inventory {
     @JoinColumn(name = "toy_id")
     private Toy toy;
 
+    @Positive
     @Column(name = "quantity")
     private int quantity;
 
-    public Inventory() {
-    }
-
-    public Inventory(int id, Warehouse warehouse, Toy toy, int quantity) {
-        this.id = id;
-        this.warehouse = warehouse;
-        this.toy = toy;
-        this.quantity = quantity;
-    }
-
-    public Inventory(Warehouse warehouse, Toy toy, int quantity) {
-        this.warehouse = warehouse;
-        this.toy = toy;
-        this.quantity = quantity;
-    }
-
-    public Inventory(Warehouse warehouse, Toy toy) {
-        this.warehouse = warehouse;
-        this.toy = toy;
-    }
-
-    public Inventory(int id, Warehouse warehouse, Toy toy) {
-        this.id = id;
-        this.warehouse = warehouse;
-        this.toy = toy;
-    }
 
     public int getId() {
         return id;

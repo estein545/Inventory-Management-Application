@@ -15,6 +15,9 @@ public class WarehouseService {
     @Autowired
     WarehouseRepository warehouseRepository;
 
+    @Autowired
+    InventoryService inventoryService;
+
     public List<Warehouse> findAll() {
         return warehouseRepository.findAll();
     }
@@ -67,6 +70,8 @@ public class WarehouseService {
     }
 
     public void deleteByLocation(String location) {
+        Warehouse warehouse = find(location);
+        inventoryService.deleteByWarehouseId(warehouse.getId());
         warehouseRepository.deleteByLocation(location);
 
     }
