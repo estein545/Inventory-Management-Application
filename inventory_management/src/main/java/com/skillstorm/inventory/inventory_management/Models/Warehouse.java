@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -39,6 +40,10 @@ public class Warehouse {
     @JsonBackReference
     @OneToMany(targetEntity = Inventory.class, mappedBy = "warehouse")
     private Set<Inventory> toys;
+
+    @PositiveOrZero
+    @Column(name = "total_quantity")
+    private int totalQuantity;
 
 
     public long getId() {
