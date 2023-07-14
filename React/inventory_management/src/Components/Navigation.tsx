@@ -2,6 +2,14 @@ import { useState } from "react";
 import { NavDropDownButton, Menu, Header, Title, NavMenuButton, PrimaryNav } from "@trussworks/react-uswds";
 import React from "react";
 
+const NavStyle = {
+  backgroundColor: 'black',
+  
+}
+const wordStyle = {
+  color: 'white',
+  
+}
 export default function Navigation() {
     const [expanded, setExpanded] = useState(false)
     const onClick = (): void => setExpanded((prvExpanded) => !prvExpanded)
@@ -26,14 +34,14 @@ export default function Navigation() {
           id="testDropDownOne"
         />
       </>,
-      <a href="#two" key="two" className="usa-nav__link">
-        <span>Inventory</span>
+      <a href="/inventory" key="one" className="usa-nav__link">
+        <span style = {wordStyle}>Inventory</span>
       </a>,
-      <a href="#three" key="three" className="usa-nav__link">
-        <span>Warehouses</span>
+      <a href="/" key="two" className="usa-nav__link">
+        <span style = {wordStyle}>Warehouses</span>
       </a>,
-      <a href="#three" key="three" className="usa-nav__link">
-        <span>Toy List</span>
+      <a href="/toys" key="three" className="usa-nav__link">
+        <span style = {wordStyle}>Toy List</span>
       </a>,
       
     ]
@@ -41,13 +49,13 @@ export default function Navigation() {
     return (
       <>
         <div className={`usa-overlay ${expanded ? 'is-visible' : ''}`}></div>
-        <Header basic={true}>
+        <Header style = {NavStyle} basic={true}>
           <div className="usa-nav-container">
             <div className="usa-navbar">
-              <Title>Toytopia</Title>
+              <Title style = {wordStyle}>Toytopia</Title>
               <NavMenuButton onClick={onClick} label="Menu" />
             </div>
-            <PrimaryNav
+            <PrimaryNav style = {NavStyle}
               items={testItemsMenu}
               mobileExpanded={expanded}
               onToggleMobileNav={onClick}>

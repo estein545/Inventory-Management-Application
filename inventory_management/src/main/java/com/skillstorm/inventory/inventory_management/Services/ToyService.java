@@ -54,10 +54,9 @@ public class ToyService {
     public Toy saveToy(Toy toy) {
         List<Toy> toys = toyRepository.findAll();
         for(Toy oldToy: toys) {
-            if (oldToy.getToyName().equals(toy.getToyName())) {
-                toy.setId(oldToy.getId());
+            if (oldToy.getId() == toy.getId()) {
                 oldToy = toy;
-                return oldToy;
+                return toyRepository.save(oldToy);
             }
         }
 

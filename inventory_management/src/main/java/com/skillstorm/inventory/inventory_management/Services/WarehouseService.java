@@ -54,10 +54,9 @@ public class WarehouseService {
     public Warehouse saveWarehouse(Warehouse warehouse) {
         List<Warehouse> warehouses = warehouseRepository.findAll();
         for(Warehouse oldWarehouse: warehouses) {
-            if (oldWarehouse.getLocation().equals(warehouse.getLocation())) {
-                warehouse.setId(oldWarehouse.getId());
+            if (oldWarehouse.getId() == warehouse.getId()) {
                 oldWarehouse = warehouse;
-                return oldWarehouse;
+                return warehouseRepository.save(oldWarehouse);
             }
         }
 

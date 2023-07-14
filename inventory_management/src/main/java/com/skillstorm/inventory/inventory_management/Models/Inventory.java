@@ -24,7 +24,7 @@ public class Inventory {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
@@ -39,11 +39,11 @@ public class Inventory {
     private int quantity;
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -71,15 +71,11 @@ public class Inventory {
         this.quantity = quantity;
     }
 
+    
+
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        result = prime * result + ((warehouse == null) ? 0 : warehouse.hashCode());
-        result = prime * result + ((toy == null) ? 0 : toy.hashCode());
-        result = prime * result + quantity;
-        return result;
+    public String toString() {
+        return "Inventory [id=" + id + ", warehouse=" + warehouse + ", toy=" + toy + ", quantity=" + quantity + "]";
     }
 
     @Override
@@ -109,8 +105,14 @@ public class Inventory {
     }
 
     @Override
-    public String toString() {
-        return "Inventory [id=" + id + ", warehouse=" + warehouse + ", toy=" + toy + ", quantity=" + quantity + "]";
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int) (id ^ (id >>> 32));
+        result = prime * result + ((warehouse == null) ? 0 : warehouse.hashCode());
+        result = prime * result + ((toy == null) ? 0 : toy.hashCode());
+        result = prime * result + quantity;
+        return result;
     }
 
     

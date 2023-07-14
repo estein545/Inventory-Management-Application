@@ -1,5 +1,5 @@
 import { Button, Form, Label, TextInput } from "@trussworks/react-uswds";
-
+import toast, { Toaster } from "react-hot-toast";
 export default function WarehouseForm({handleNewWarehouse}) {
 
     const url = "http://localhost:8080/warehouses"
@@ -26,8 +26,9 @@ export default function WarehouseForm({handleNewWarehouse}) {
         .then(returnedData => {
             handleNewWarehouse(returnedData);
             event.target.reset();
+            toast.success("Warehouse created!")
         })
-        .catch(error => console.error(error))
+        .catch(error => toast.error("Warehouse already exists!"))
     }
 
     return(

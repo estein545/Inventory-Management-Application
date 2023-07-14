@@ -90,6 +90,14 @@ public class InventoryController {
         return 1;
     }
 
+    @Transactional
+    @DeleteMapping("/delete-inventory/{Id}")
+    public int deleteById(@PathVariable long Id) {
+        inventoryService.deleteById(Id);
+
+        return 1;
+    }
+
     
 
 }
