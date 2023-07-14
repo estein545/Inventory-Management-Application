@@ -4,6 +4,8 @@ export default function WarehouseForm({handleNewWarehouse}) {
 
     const url = "http://localhost:8080/warehouses"
 
+
+    //handles submission, creating a new warehouse
     function handleSubmit(event) {
         event.preventDefault();
 

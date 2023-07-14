@@ -8,6 +8,7 @@ export function InventoryTable({tableData, buttonStyle, setButtonStyle, setInven
     const modalRef = useRef(null);
     const [selectedInventory, setSelectedInventory] = useState("");
     
+    // function to update the inventory table after a submission to the InventoryUpdateForm
     function handleUpdateInventory(updatedInventory) {
         setInventory((oldState) => {
           const updatedState = [...oldState];
@@ -21,12 +22,14 @@ export function InventoryTable({tableData, buttonStyle, setButtonStyle, setInven
         });
       }
 
+    //Updates the inventory table after a submission to the InventoryDeleteForm
     function handleDeleteInventory(deletedInventoryId) {
         setInventory((oldState) => {
             return oldState.filter(inventory => inventory.id != deletedInventoryId);
         });
     }
 
+    //Function to pass the inventory prop to the Edit & Delete Buttons for auto-fill 
     function handleUpdateClick(inventory) {
         setSelectedInventory(inventory);
 
@@ -50,10 +53,10 @@ export function InventoryTable({tableData, buttonStyle, setButtonStyle, setInven
                                 <td>{inventory.toy.toyName}</td>
                                 <td>{inventory.quantity}</td>
                                 <td  style={buttonStyle}>
-                                    {editOrDelete === "Edit" ? <ModalToggleButton onClick={() => handleUpdateClick(inventory)} modalRef={modalRef} opener>
+                                    {editOrDelete === "Edit" ? <ModalToggleButton className = "styledButton2" onClick={() => handleUpdateClick(inventory)} modalRef={modalRef} opener>
                                         <img src="src\assets\editicon.png" width= '20px' height = '23px'></img>
                                     </ModalToggleButton> :
-                                    <ModalToggleButton onClick={() => handleUpdateClick(inventory)} modalRef={modalRef} opener>
+                                    <ModalToggleButton className = "styledButton3" onClick={() => handleUpdateClick(inventory)} modalRef={modalRef} opener>
                                         <img src="src\assets\trash.png" width= '20px' height = '23px'></img>
                                     </ModalToggleButton>}
                                 </td>

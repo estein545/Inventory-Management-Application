@@ -6,13 +6,17 @@ import { toast } from "react-hot-toast";
 export default function ToyUpdateForm({handleUpdateToy, toy}) {
 
     const url = "http://localhost:8080/toys"
+
+    // Get initial values from the toy object or set them to empty strings
     const [initialName, setInitialName] = useState(toy?.toyName ?? "");
     const initialId = toy?.id ?? "";
 
+    // Update values whenever the toy prop changes
     useEffect(() => {
         setInitialName(toy?.toyName ?? "")
     }, [toy])
     
+    // Function to handle form submission by sending a put request to the back end
     function handleSubmit(event) {
         event.preventDefault();
 

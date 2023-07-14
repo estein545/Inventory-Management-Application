@@ -6,16 +6,19 @@ export default function WarehouseUpdateForm({handleUpdateWarehouse, warehouse}) 
 
     const url = "http://localhost:8080/warehouses"
 
+    // Get initial values from the warehouse object or set them to empty strings
     const initialId = warehouse?.id ?? "";
     const [initialLocation, setInitialLocation] = useState(warehouse?.location ?? "");
     const initialQuantity = warehouse?.totalQuantity ?? "";
     const [initialMaxQuantity, setInitialMaxQuantity] = useState(warehouse?.maxQuantity ?? "");
 
+    // Update initialLocation and initialMaxQuantity whenever the warehouse prop changes
     useEffect(() => {
         setInitialLocation(warehouse?.location ?? "");
         setInitialMaxQuantity(warehouse?.maxQuantity ?? "");
     }, [warehouse])
 
+    // Function to handle form submission by sending a put request to the back end
     function handleSubmit(event) {
         event.preventDefault();
 

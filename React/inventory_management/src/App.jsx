@@ -6,18 +6,16 @@ import Inventory from './Components/Pages/Inventory';
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
 import Toys from './Components/Pages/Toys';
 import toast, {Toaster} from 'react-hot-toast';
+import './App.css';
 
-const NavStyle = {
-  backgroundColor: 'black',
-  
-}
+
 function App() {
 
 
 
   return (
     <>
-      <div><Toaster/></div>
+      <div><Toaster/></div>               {/*Toaster comes from react-hot-toast and allows for creation of the success and error messages I've added in all fetch functions */}
       <Navigation></Navigation>
       <BrowserRouter basename='/'>
         <Routes>
@@ -31,3 +29,4 @@ function App() {
 }
 
 export default App
+

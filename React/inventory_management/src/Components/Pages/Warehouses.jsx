@@ -5,8 +5,8 @@ import WarehouseForm from "../Warehouse Components/WarehouseForm";
 import InventoryForm from "../Inventory Components/InventoryForm";
 
 
-const buttonStyleOne = {
-    borderWidth: 0,
+const buttonStyleOne = {                //initializing style variables to be used to set the edit/delete buttons to be visible
+    borderWidth: 0,                     // these had to be set before the initialization of the actual page
     backgroundColor: 'white',
     opacity: 0,
 }
@@ -23,6 +23,7 @@ export default function Warehouses() {
     const [buttonStyle, setButtonStyle] = useState(buttonStyleOne);
     const [editOrDelete, setEditOrDelete] = useState();
 
+    //Get request to populate the table
     useEffect(() => { 
 
         fetch(url)
@@ -38,14 +39,14 @@ export default function Warehouses() {
         
     }, []);
 
-    
+    //handles adding in a newly created Warehouse from the WarehouseForm into the table
     function handleNewWarehouse(newWarehouse) {
         setWarehouses((oldState) => {
             return [...oldState, newWarehouse]
         })
     }
 
-
+    //renders the Edit buttons when clicked, unrendering the Delete buttons
     function handleEditOnClick() {
 
         if (editOrDelete === "Edit") {
@@ -61,6 +62,7 @@ export default function Warehouses() {
         })
     }
 
+    //renders the Delete buttons when clicked, unrendering the Edit buttons
     function handleDeleteOnClick() {
         if (editOrDelete === "Delete") {
             setButtonStyle((previousStyle) => {
@@ -83,9 +85,9 @@ export default function Warehouses() {
                         <h1 className='text-centered'>All Warehouses</h1>
                     </Grid>
                     <Grid col={5}>
-                        <ModalToggleButton modalRef={modalRef} opener>Create</ModalToggleButton>
-                        <Button onClick = {handleEditOnClick}>Update</Button>
-                        <Button onClick = {handleDeleteOnClick}>Delete</Button>
+                        <ModalToggleButton className = "styledButton" modalRef={modalRef} opener>Create</ModalToggleButton>
+                        <Button className = "styledButton" onClick = {handleEditOnClick}>Update</Button>
+                        <Button className = "styledButton" onClick = {handleDeleteOnClick}>Delete</Button>
                     </Grid>
                 </Grid>
                 <Grid row>

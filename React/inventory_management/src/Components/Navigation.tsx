@@ -10,6 +10,7 @@ const wordStyle = {
   color: 'white',
   
 }
+//Creates the Navigation Bar at the top of the screen on all pages - code taken from trussworks Navigation Module
 export default function Navigation() {
     const [expanded, setExpanded] = useState(false)
     const onClick = (): void => setExpanded((prvExpanded) => !prvExpanded)
@@ -53,8 +54,10 @@ export default function Navigation() {
           <div className="usa-nav-container">
             <div className="usa-navbar">
               <Title style = {wordStyle}>Toytopia</Title>
+              
               <NavMenuButton onClick={onClick} label="Menu" />
             </div>
+            <img className = "clown" src="src\assets\clowntoy.png" width="57 px"></img>
             <PrimaryNav style = {NavStyle}
               items={testItemsMenu}
               mobileExpanded={expanded}

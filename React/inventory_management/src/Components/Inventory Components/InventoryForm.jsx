@@ -5,6 +5,7 @@ export default function InventoryForm({handleNewInventory}) {
 
     const url = "http://localhost:8080/inventory"
 
+    //handles submission, creating a new inventory entry
     function handleSubmit(event) {
         event.preventDefault();
 

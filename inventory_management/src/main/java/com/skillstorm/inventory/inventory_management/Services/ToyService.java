@@ -42,7 +42,7 @@ public class ToyService {
 
     public Toy saveNewToy(Toy toy) {
         List<Toy> toys = toyRepository.findAll();
-        for(Toy oldToy: toys) {
+        for(Toy oldToy: toys) {                                     //logic to make sure the toy can't be added if it already exists
             if (oldToy.getToyName().equals(toy.getToyName())) {
                 return null;
             }
@@ -53,7 +53,7 @@ public class ToyService {
 
     public Toy saveToy(Toy toy) {
         List<Toy> toys = toyRepository.findAll();
-        for(Toy oldToy: toys) {
+        for(Toy oldToy: toys) {                                     //logic to make sure the toy cannot be updated if it doesn't already exist
             if (oldToy.getId() == toy.getId()) {
                 oldToy = toy;
                 return toyRepository.save(oldToy);
@@ -70,7 +70,7 @@ public class ToyService {
 
     public void deleteByToyName(String toyName) {
         Toy toy = find(toyName);
-        inventoryService.deleteByToyId(toy.getId());
+        inventoryService.deleteByToyId(toy.getId());        //calls inventory service to also delete every inventory entry associated with that toy
         toyRepository.deleteByToyName(toyName);
 
     }

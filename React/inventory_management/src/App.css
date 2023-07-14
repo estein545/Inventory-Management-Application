@@ -1,0 +1,46 @@
+.styledButton {
+    
+    background-color:black
+}
+
+.styledButton:hover {
+    color: white;
+    background-color: #212020
+}
+
+.styledButton2 {
+    
+    background-color:rgba(110, 144, 150, 0.486)
+}
+
+.styledButton2:hover {
+    color: black;
+    background-color: rgba(157, 178, 182, 0.486)
+}
+
+.styledButton3 {
+    
+    background-color:rgba(212, 36, 36, 0.911)
+}
+
+.styledButton3:hover {
+    color: black;
+    background-color: rgba(236, 71, 71, 0.911)
+}
+
+.clown {
+    transform: translate(-131px, -4px);
+    
+}
+
+.user {
+    transform: translate( 5px, -4px);
+    
+}
+
+.user1 {
+    color: white;
+    transform: translate(80px, 10px);
+    font-size: 20px;
+    
+}

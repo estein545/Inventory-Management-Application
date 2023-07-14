@@ -5,6 +5,7 @@ export default function InventoryDeleteForm({handleDeleteInventory, inventory}) 
 
     const url = "http://localhost:8080/inventory"
 
+    //initialize the variables to be sent to the delete request
     const initialId = inventory?.id ?? "";
     const initialWarehouseId = inventory?.warehouse?.id ?? "";
     const initialWarehouseLocation = inventory?.warehouse?.location ?? "";
@@ -14,6 +15,7 @@ export default function InventoryDeleteForm({handleDeleteInventory, inventory}) 
     const initialToyName = inventory?.toy?.toyName ?? "";
     const initialQuantity = inventory?.quantity ?? "";
 
+    //handle submission by sending a delete request to the back end
     function handleSubmit(event) {
         event.preventDefault();
 
@@ -77,7 +79,7 @@ export default function InventoryDeleteForm({handleDeleteInventory, inventory}) 
                 <TextInput id="toy-toyName-input" name="toyName" defaultValue={initialToyName} readOnly hidden/>
 
                 <Button type="submit" data-close-modal='true'>Yes</Button>
-                <Button onClick = {handleNoClick} data-close-modal='true'>No</Button>
+                <Button className = "styledButton3" onClick = {handleNoClick} data-close-modal='true'>No</Button>
             </Form>
         </>
     )

@@ -42,7 +42,7 @@ public class WarehouseService {
 
     public Warehouse saveNewWarehouse(Warehouse warehouse) {
         List<Warehouse> warehouses = warehouseRepository.findAll();
-        for(Warehouse oldWarehouse: warehouses) {
+        for(Warehouse oldWarehouse: warehouses) {                               //logic to make sure the warehouse can't be added if it already exists
             if (oldWarehouse.getLocation().equals(warehouse.getLocation())) {
                 return null;
             }
@@ -54,7 +54,7 @@ public class WarehouseService {
     public Warehouse saveWarehouse(Warehouse warehouse) {
         List<Warehouse> warehouses = warehouseRepository.findAll();
         for(Warehouse oldWarehouse: warehouses) {
-            if (oldWarehouse.getId() == warehouse.getId()) {
+            if (oldWarehouse.getId() == warehouse.getId() && warehouse.getTotalQuantity() <= warehouse.getMaxQuantity()) {      //checks that the warehouse doesn't exist already and also that Capacity is not set lower than current quantity
                 oldWarehouse = warehouse;
                 return warehouseRepository.save(oldWarehouse);
             }
@@ -70,7 +70,7 @@ public class WarehouseService {
 
     public void deleteByLocation(String location) {
         Warehouse warehouse = find(location);
-        inventoryService.deleteByWarehouseId(warehouse.getId());
+        inventoryService.deleteByWarehouseId(warehouse.getId());        //calls inventory service to also delete every inventory entry associated with that warehouse
         warehouseRepository.deleteByLocation(location);
 
     }

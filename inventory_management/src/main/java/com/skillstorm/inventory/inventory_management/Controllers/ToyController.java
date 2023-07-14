@@ -62,7 +62,7 @@ public class ToyController {
 
     }
 
-    @PutMapping("/toy") // NEED TO RETEST
+    @PutMapping("/toy") 
     public ResponseEntity<Toy> updateToy(@RequestBody Toy toy) {
         Toy newToy = toyService.saveToy(toy);
 

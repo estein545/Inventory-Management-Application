@@ -6,6 +6,7 @@ export default function InventoryUpdateForm({handleUpdateInventory, inventory}) 
 
     const url = "http://localhost:8080/inventory"
 
+    // Get initial values from the inventory object or set them to empty strings
     const initialId = inventory?.id ?? "";
     const initialWarehouseId = inventory?.warehouse?.id ?? "";
     const initialWarehouseLocation = inventory?.warehouse?.location ?? "";
@@ -15,10 +16,12 @@ export default function InventoryUpdateForm({handleUpdateInventory, inventory}) 
     const initialToyName = inventory?.toy?.toyName ?? "";
     const [initialQuantity, setInitialQuantity] = useState(inventory?.quantity ?? "");
 
+    // Update values whenever the inventory prop changes
     useEffect(() => {
         setInitialQuantity(inventory?.quantity ?? "");
     }, [inventory])
 
+    // Function to handle form submission by sending a put request to the back end
     function handleSubmit(event) {
         event.preventDefault();
 
@@ -52,7 +55,7 @@ export default function InventoryUpdateForm({handleUpdateInventory, inventory}) 
             event.target.reset();
             toast.success("Inventory Added!");
         })
-        .catch(error => toast.error("Update Failed!"))
+        .catch(error => toast.error("Exceeds Max Quantity of the Warehouse!"))
     }
 
     return(

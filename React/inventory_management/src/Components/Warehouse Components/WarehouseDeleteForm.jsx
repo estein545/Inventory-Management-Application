@@ -5,11 +5,13 @@ export default function WarehouseDeleteForm({handleDeleteWarehouse, warehouse}) 
 
     const url = "http://localhost:8080/warehouses"
 
+    //initialize the variables to be sent to the delete request
     const initialId = warehouse?.id ?? "";
     const initialLocation = warehouse?.location ?? "";
     const initialQuantity = warehouse?.totalQuantity ?? "";
     const initialMaxQuantity = warehouse?.maxQuantity ?? "";
 
+    //handle submission by sending a delete request to the back end
     function handleSubmit(event) {
         event.preventDefault();
 
@@ -57,7 +59,7 @@ export default function WarehouseDeleteForm({handleDeleteWarehouse, warehouse}) 
                 <TextInput id="warehouse-maxQuantity-input" name="warehousemaxQuantity" value={initialMaxQuantity} onChange={(event) => setInitialMaxQuantity(event.target.value)} hidden/>
 
                 <Button type="submit" data-close-modal='true'>Yes</Button>
-                <Button onClick = {handleNoClick} data-close-modal='true'>No</Button>
+                <Button className = "styledButton3" onClick = {handleNoClick} data-close-modal='true'>No</Button>
             </Form>
         </>
     )

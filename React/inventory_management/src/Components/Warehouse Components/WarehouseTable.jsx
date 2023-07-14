@@ -8,6 +8,7 @@ export function WarehouseTable({tableData, buttonStyle, setButtonStyle, setWareh
     const modalRef = useRef(null);
     const [selectedWarehouse, setSelectedWarehouse] = useState("");
     
+    // function to update the warehouses table after a submission to the WarehouseUpdateForm
     function handleUpdateWarehouse(updatedWarehouse) {
         setWarehouses((oldState) => {
           const updatedState = [...oldState];
@@ -20,13 +21,15 @@ export function WarehouseTable({tableData, buttonStyle, setButtonStyle, setWareh
           return updatedState;
         });
       }
-
+    
+    //Updates the warehouse table after a submission to the WarehouseDeleteForm
     function handleDeleteWarehouse(deletedWarehouseId) {
         setWarehouses((oldState) => {
             return oldState.filter(warehouse => warehouse.id != deletedWarehouseId);
         });
     }
 
+    //Function to pass the warehouse prop to the Edit & Delete Buttons for auto-fill 
     function handleUpdateClick(warehouse) {
         setSelectedWarehouse(warehouse);
 
@@ -52,10 +55,10 @@ export function WarehouseTable({tableData, buttonStyle, setButtonStyle, setWareh
                                 <td>{warehouse.totalQuantity}</td>
                                 <td>{warehouse.maxQuantity}</td>
                                 <td  style={buttonStyle}>
-                                    {editOrDelete === "Edit" ? <ModalToggleButton onClick={() => handleUpdateClick(warehouse)} modalRef={modalRef} opener>
+                                    {editOrDelete === "Edit" ? <ModalToggleButton className = "styledButton2" onClick={() => handleUpdateClick(warehouse)} modalRef={modalRef} opener>
                                         <img src="src\assets\editicon.png" width= '20px' height = '23px'></img>
                                     </ModalToggleButton> :
-                                    <ModalToggleButton onClick={() => handleUpdateClick(warehouse)} modalRef={modalRef} opener>
+                                    <ModalToggleButton className = "styledButton3" onClick={() => handleUpdateClick(warehouse)} modalRef={modalRef} opener>
                                         <img src="src\assets\trash.png" width= '20px' height = '23px'></img>
                                     </ModalToggleButton>}
                                 </td>

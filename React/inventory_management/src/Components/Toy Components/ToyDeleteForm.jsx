@@ -6,9 +6,11 @@ export default function ToyDeleteForm({handleDeleteToy, toy}) {
 
     const url = "http://localhost:8080/toys"
     
+    //initialize the variables to be sent to the delete request
     const initialId = toy?.id ?? "";
     const initialName = toy?.toyName ?? "";
 
+    //handle submission by sending a delete request to the back end
     function handleSubmit(event) {
         event.preventDefault();
 
@@ -50,7 +52,7 @@ export default function ToyDeleteForm({handleDeleteToy, toy}) {
                 <TextInput id="toy-toyName-input" name="toyName" value={initialName} onChange={(event) => setInitialName(event.target.value)} hidden/>
 
                 <Button type="submit" data-close-modal='true'>Yes</Button>
-                <Button onClick = {handleNoClick} data-close-modal='true'>No</Button>
+                <Button className = "styledButton3" onClick = {handleNoClick} data-close-modal='true'>No</Button>
             </Form>
         </>
     )

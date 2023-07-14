@@ -7,7 +7,9 @@ import ToyDeleteForm from "./ToyDeleteForm"
 export function ToyTable({tableData, buttonStyle, setButtonStyle, setToys, toys, editOrDelete}) {
     const modalRef = useRef(null);
     const [selectedToy, setSelectedToy] = useState("");
-    
+
+
+    // function to update the Toys table after a submission to the ToyUpdateForm
     function handleUpdateToy(updatedToy) {
         setToys((oldState) => {
           const updatedState = [...oldState];
@@ -21,12 +23,14 @@ export function ToyTable({tableData, buttonStyle, setButtonStyle, setToys, toys,
         });
       }
 
+    //Updates the toy table after a submission to the ToyDeleteForm
     function handleDeleteToy(deletedToyId) {
         setToys((oldState) => {
             return oldState.filter(toy => toy.id != deletedToyId);
         });
     }
 
+    //Function to pass the toy prop to the Edit & Delete Buttons for auto-fill 
     function handleUpdateClick(toy) {
         setSelectedToy(toy);
 
@@ -48,10 +52,10 @@ export function ToyTable({tableData, buttonStyle, setButtonStyle, setToys, toys,
                                 <td hidden>{toy.id}</td>
                                 <td>{toy.toyName}</td>
                                 <td  style={buttonStyle}>
-                                    {editOrDelete === "Edit" ? <ModalToggleButton onClick={() => handleUpdateClick(toy)} modalRef={modalRef} opener>
+                                    {editOrDelete === "Edit" ? <ModalToggleButton className = "styledButton2" onClick={() => handleUpdateClick(toy)} modalRef={modalRef} opener>
                                         <img src="src\assets\editicon.png" width= '20px' height = '23px'></img>
                                     </ModalToggleButton> :
-                                    <ModalToggleButton onClick={() => handleUpdateClick(toy)} modalRef={modalRef} opener>
+                                    <ModalToggleButton className = "styledButton3" onClick={() => handleUpdateClick(toy)} modalRef={modalRef} opener>
                                         <img src="src\assets\trash.png" width= '20px' height = '23px'></img>
                                     </ModalToggleButton>}
                                 </td>

@@ -5,6 +5,7 @@ export default function ToyForm({handleNewToy}) {
 
     const url = "http://localhost:8080/toys"
 
+    //handles submission, creating a new toy
     function handleSubmit(event) {
         event.preventDefault();
 
